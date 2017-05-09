@@ -17,4 +17,21 @@ class ProcessMsg
     {
         $this->Message = $Message;
     }
+
+    /**
+     * @param string $attributeName
+     * @return string
+     */
+    public function getMsgDataAttribute($attributeName)
+    {
+        return $this->Message->getMsgDataAttribute($attributeName);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProcessingDb()
+    {
+        return $this->Message->getClientHeaderAttribute('ProcessingDB');
+    }
 }

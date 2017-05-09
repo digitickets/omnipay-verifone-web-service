@@ -60,4 +60,17 @@ class ClientHeader
         $this->CDATAWrapping = $CDATAWrapping;
         $this->Source = $Source;
     }
+
+    /**
+     * @param string $attributeName
+     * @return string|null
+     */
+    public function getAttribute($attributeName)
+    {
+        if (isset($this->$attributeName)) {
+            return $this->$attributeName;
+        }
+
+        return null;
+    }
 }

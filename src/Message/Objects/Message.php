@@ -17,6 +17,10 @@ class Message
      * @var string
      */
     private $MsgData;
+    /**
+     * @var \SimpleXMLElement
+     */
+    private $MsgDataAsObject;
 
     /**
      * Message constructor.
@@ -32,5 +36,25 @@ class Message
         $this->ClientHeader = $ClientHeader;
         $this->MsgType = $MsgType;
         $this->MsgData = $MsgData;
+
+        $this->MsgDataAsObject = simplexml_load_string($this->MsgData, 'SimpleXMLElement', LIBXML_NOWARNING);
+    }
+
+    /**
+     * @param string $attributeName
+     * @return string
+     */
+    public function getMsgDataAttribute($attributeName)
+    {
+        return $this->MsgDataAsObject->$attributeName;
+    }
+
+    /**
+     * @param string $attributeName
+     * @return string|null
+     */
+    public function getClientHeaderAttribute($attributeName)
+    {
+        return $this->ClientHeader->getAttribute($attributeName);
     }
 }

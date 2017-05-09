@@ -16,6 +16,11 @@ abstract class AbstractRemoteRequest extends AbstractRequest
     protected $liveEndpoint = 'TBA';
     protected $testEndpoint = 'https://txn-cst.cxmlpg.com/XML4/commideagateway.asmx';
 
+    protected function getEndpoint(bool $withWsdl = false)
+    {
+        return ($this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint) . ($withWsdl ? '?WSDL' : '');
+    }
+
     /**
      * @return string
      */
@@ -89,40 +94,9 @@ abstract class AbstractRemoteRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $processMessage = new \SOAPClient('https://txn-cst.cxmlpg.com/XML4/commideagateway.asmx?WSDL');
+        $processMessage = new \SOAPClient($this->getEndpoint(true));
         $response = $processMessage->__soapCall('ProcessMsg', ['ProcessMsg' => $data]);
 
-        return $this->response = new PurchaseResponse($this, $response);
-    }
-
-    /**
-     * Method to return the value of the postdata field in the form that is submitted to Verifone.
-     * It's very complicated! It is XML, with another XML document embedded in one of the elements,
-     * and then it's double-encoded.
-     *
-     * @return string
-     */
-    protected function getOuterXml()
-    {
-        // Build the post data, which contains the request data.
-        $postDataXml = new SimpleXMLElement(
-            '<?xml version="1.0" encoding="utf-8"?><soap:Envelope/>'
-        );
-        $postDataXml->addAttribute(
-            'xmlns:xsi',
-            'http://www.w3.org/2001/XMLSchema-instance'
-        );
-        $postDataXml->addAttribute(
-            'xmlns:xsd',
-            'http://www.w3.org/2001/XMLSchema'
-        );
-        $postDataXml->addAttribute(
-            'xmlns:soap',
-            'http://schemas.xmlsoap.org/soap/envelope/'
-        );
-
-        $postData = $postDataXml->asXML();
-
-        return $postData;
+        return $this->response = new RemoteResponse($this, $response);
     }
 }

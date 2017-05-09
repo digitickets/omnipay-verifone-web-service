@@ -6,6 +6,14 @@ use Omnipay\Common\AbstractGateway;
 
 class Gateway extends AbstractGateway
 {
+    protected $liveCardFormPostUrl = 'TBA';
+    protected $testCardFormPostUrl = 'https://vg-cst.cxmlpg.com/vanguard.aspx';
+
+    public function getCardFormPostUrl()
+    {
+        return ($this->getTestMode() ? $this->testCardFormPostUrl : $this->liveCardFormPostUrl);
+    }
+
     public function getName()
     {
         return 'Verifone (Web Service)';
