@@ -52,7 +52,15 @@ class Gateway extends AbstractGateway
     public function generateSession(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\GenerateSession',
+            '\DigiTickets\VerifoneWebService\Message\GenerateSessionRequest',
+            $parameters
+        );
+    }
+
+    public function getCardDetails(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\GetCardDetailsRequest',
             $parameters
         );
     }

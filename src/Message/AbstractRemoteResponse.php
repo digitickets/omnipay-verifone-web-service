@@ -2,14 +2,14 @@
 
 namespace DigiTickets\VerifoneWebService\Message;
 
-use DigiTickets\VerifoneWebService\Message\Objects\ClientHeader;
-use DigiTickets\VerifoneWebService\Message\Objects\Message;
 use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg;
+use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message;
+use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message\ClientHeader;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
-class RemoteResponse extends AbstractResponse
+abstract class AbstractRemoteResponse extends AbstractResponse
 {
     /**
      * @var ProcessMsg $data
@@ -35,9 +35,15 @@ class RemoteResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        // @TODO: Need to look in the response data to find out if it was successful.
-        return true;
+        return empty($this->getError());
     }
+
+    /**
+     * Return the error message
+     *
+     * @return string
+     */
+    abstract public function getError();
 
     protected function convertDataToProcessMsg()
     {

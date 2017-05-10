@@ -2,6 +2,8 @@
 
 namespace DigiTickets\VerifoneWebService\Message\Objects;
 
+use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message;
+
 class ProcessMsg
 {
     /**

@@ -2,9 +2,9 @@
 
 namespace DigiTickets\VerifoneWebService\Message;
 
-use DigiTickets\VerifoneWebService\Message\Objects\ClientHeader;
-use DigiTickets\VerifoneWebService\Message\Objects\Message;
 use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg;
+use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message;
+use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message\ClientHeader;
 use Omnipay\Common\Message\AbstractRequest;
 use SimpleXMLElement;
 
@@ -30,6 +30,13 @@ abstract class AbstractRemoteRequest extends AbstractRequest
      * @return string
      */
     abstract public function getMsgData();
+
+    /**
+     * @param RequestInterface $request
+     * @param mixed $response
+     * @return AbstractRemoteResponse
+     */
+    abstract protected function buildResponse($request, $response);
 
     public function getSystemId()
     {
@@ -74,7 +81,7 @@ abstract class AbstractRemoteRequest extends AbstractRequest
                     $this->getSystemId(),
                     $this->getSystemGuid(),
                     $this->getPasscode(),
-                    '',
+                    empty($this->getProcessingDb()) ? '' : $this->getProcessingDb(),
                     1,
                     false,
                     ''
@@ -97,6 +104,26 @@ abstract class AbstractRemoteRequest extends AbstractRequest
         $processMessage = new \SOAPClient($this->getEndpoint(true));
         $response = $processMessage->__soapCall('ProcessMsg', ['ProcessMsg' => $data]);
 
-        return $this->response = new RemoteResponse($this, $response);
+        return $this->response = $this->buildResponse($this, $response);
+    }
+
+    public function getSessionGuid()
+    {
+        return $this->getParameter('sessionGuid');
+    }
+
+    public function setSessionGuid($value)
+    {
+        return $this->setParameter('sessionGuid', $value);
+    }
+
+    public function getProcessingDb()
+    {
+        return $this->getParameter('processingDb');
+    }
+
+    public function setProcessingDb($value)
+    {
+        return $this->setParameter('processingDb', $value);
     }
 }

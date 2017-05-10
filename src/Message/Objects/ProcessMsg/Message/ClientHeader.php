@@ -1,6 +1,6 @@
 <?php
 
-namespace DigiTickets\VerifoneWebService\Message\Objects;
+namespace DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message;
 
 class ClientHeader
 {
