@@ -18,10 +18,6 @@ class Message
      * @var string
      */
     private $MsgData;
-    /**
-     * @var \SimpleXMLElement
-     */
-    private $MsgDataAsObject;
 
     /**
      * Message constructor.
@@ -37,8 +33,6 @@ class Message
         $this->ClientHeader = $ClientHeader;
         $this->MsgType = $MsgType;
         $this->MsgData = $MsgData;
-
-        $this->MsgDataAsObject = simplexml_load_string($this->MsgData, 'SimpleXMLElement', LIBXML_NOWARNING);
     }
 
     /**
@@ -47,7 +41,11 @@ class Message
      */
     public function getMsgDataAttribute($attributeName)
     {
-        return $this->MsgDataAsObject->$attributeName;
+        // In an ideal world, we would cache this value in the class, but the problem is it would then get sent
+        // in all the messages, which we don't want to do.
+        $MsgDataAsObject = simplexml_load_string($this->MsgData, 'SimpleXMLElement', LIBXML_NOWARNING);
+
+        return $MsgDataAsObject->$attributeName;
     }
 
     /**

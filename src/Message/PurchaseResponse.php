@@ -12,10 +12,13 @@ class PurchaseResponse extends AbstractRemoteResponse
     public function getError()
     {
         // Determine the error message (if any).
-        $txnresult = $this->data->getMsgDataAttribute('txnresult');
+        // From Verifone Tech support: Successful transactions will respond with an auth code, auth message, and
+        // other fields, however unsuccessful transactions will return with an error code and error description.
+        // They also say to use a generic error message ("Your transaction was unsuccessful"), rather than trying
+        // to build a message from the response.
         $authcode = $this->data->getMsgDataAttribute('authcode');
         $authmessage = $this->data->getMsgDataAttribute('authmessage');
-        return $txnresult == 'AUTHORISED' && !empty($authcode) ? null : $authmessage;
+        return !empty($authcode) && !empty($authmessage) ? null : 'Your transaction was unsuccessful. Please try again';
     }
 
     public function getTransactionId()
