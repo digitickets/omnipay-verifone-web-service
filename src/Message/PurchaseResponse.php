@@ -11,9 +11,10 @@ class PurchaseResponse extends AbstractRemoteResponse
      */
     public function getError()
     {
-        // Get the error code and description.
-        $errorCode = $this->data->getMsgDataAttribute('errorcode');
-        $errorDescription = $this->data->getMsgDataAttribute('errordescription');
-        return $errorCode == '0' ? null : $errorCode . ' - ' . $errorDescription;
+        // Determine the error message (if any).
+        $txnresult = $this->data->getMsgDataAttribute('txnresult');
+        $authcode = $this->data->getMsgDataAttribute('authcode');
+        $authmessage = $this->data->getMsgDataAttribute('authmessage');
+        return $txnresult == 'AUTHORISED' && !empty($authcode) ? null : $authmessage;
     }
 }

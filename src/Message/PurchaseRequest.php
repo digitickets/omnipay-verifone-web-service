@@ -17,7 +17,23 @@ class PurchaseRequest extends AbstractRemoteRequest
      */
     public function getMsgData()
     {
-        $tmp = '<?xml version="1.0"?><vgtransactionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="VANGUARD"><sessionguid>'.$this->getSessionGuid().'</sessionguid><merchantreference>'.$this->getTransactionId().'</merchantreference><accountid>'.$this->getAccountId().'</accountid><txntype>01</txntype><transactioncurrencycode>'.$this->getCurrency().'</transactioncurrencycode><apacsterminalcapabilities>4298</apacsterminalcapabilities><capturemethod>12</capturemethod><processingidentifier>1</processingidentifier><avshouse>'.$this->getHouse().'</avshouse><avspostcode>'.$this->getPostcode().'</avspostcode><txnvalue>'.$this->getAmount().'</txnvalue><terminalcountrycode>'.$this->getCurrencyNumber().'</terminalcountrycode><accountpasscode>'.$this->getPasscode().'</accountpasscode><returnhash>0</returnhash></vgtransactionrequest>';
+        $tmp = '<?xml version="1.0"?>
+<vgtransactionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="VANGUARD">
+<sessionguid>'.$this->getSessionGuid().'</sessionguid>
+<merchantreference>'.$this->getTransactionId().'</merchantreference>
+<accountid>'.$this->getAccountId().'</accountid>
+<txntype>01</txntype>
+<transactioncurrencycode>'.$this->getCurrencyNumber().'</transactioncurrencycode>
+<apacsterminalcapabilities>4298</apacsterminalcapabilities>
+<capturemethod>12</capturemethod>
+<processingidentifier>1</processingidentifier>
+<avshouse>'.$this->getHouse().'</avshouse>
+<avspostcode>'.str_replace(' ', '', $this->getPostcode()).'</avspostcode>
+<txnvalue>'.$this->getAmount().'</txnvalue>
+<terminalcountrycode>'.$this->getCurrencyNumber().'</terminalcountrycode>
+<accountpasscode>'.$this->getAccountPasscode().'</accountpasscode>
+<returnhash>0</returnhash>
+</vgtransactionrequest>';
 
         return $tmp;
     }
@@ -60,5 +76,15 @@ class PurchaseRequest extends AbstractRemoteRequest
     public function getCurrencyNumber()
     {
         return $this->getParameter('currencyNumber');
+    }
+
+    public function getAccountPasscode()
+    {
+        return $this->getParameter('accountPasscode');
+    }
+
+    public function setAccountPasscode($value)
+    {
+        return $this->setParameter('accountPasscode', $value);
     }
 }
