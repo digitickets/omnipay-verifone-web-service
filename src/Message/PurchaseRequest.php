@@ -4,6 +4,9 @@ namespace DigiTickets\VerifoneWebService\Message;
 
 class PurchaseRequest extends AbstractRemoteRequest
 {
+    // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
+    protected $sendConfirmOrReject;
+
     /**
      * @return string
      */
@@ -28,7 +31,7 @@ class PurchaseRequest extends AbstractRemoteRequest
 <capturemethod>12</capturemethod>
 <processingidentifier>1</processingidentifier>
 <avshouse>'.$this->getHouse().'</avshouse>
-<avspostcode>'.str_replace(' ', '', $this->getPostcode()).'</avspostcode>
+<avspostcode>'.str_replace(' ', '', $this->getPostcodeDigits()).'</avspostcode>
 <txnvalue>'.$this->getAmount().'</txnvalue>
 <terminalcountrycode>'.$this->getCurrencyNumber().'</terminalcountrycode>
 <accountpasscode>'.$this->getAccountPasscode().'</accountpasscode>
@@ -66,6 +69,12 @@ class PurchaseRequest extends AbstractRemoteRequest
     public function getPostcode()
     {
         return $this->getParameter('postcode');
+    }
+
+    public function getPostcodeDigits()
+    {
+        // Remove anything in the postcode that is not a digit, and return the result.
+        return preg_replace('/[^\d]/', '', $this->getPostcode());
     }
 
     public function setCurrencyNumber($value)

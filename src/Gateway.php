@@ -72,4 +72,20 @@ class Gateway extends AbstractGateway
             $parameters
         );
     }
+
+    public function confirm(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\ConfirmRequest',
+            $parameters
+        );
+    }
+
+    public function reject(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\RejectRequest',
+            $parameters
+        );
+    }
 }
