@@ -68,6 +68,16 @@ abstract class AbstractRemoteRequest extends AbstractRequest
         return $this->setParameter('passcode', $value);
     }
 
+    public function getAccountId()
+    {
+        return $this->getParameter('accountId');
+    }
+
+    public function setAccountId($value)
+    {
+        return $this->setParameter('accountId', $value);
+    }
+
     /**
      * @return ProcessMsg
      */

@@ -12,10 +12,6 @@ use Omnipay\Common\Message\RequestInterface;
 abstract class AbstractRemoteResponse extends AbstractResponse
 {
     /**
-     * @var ProcessMsg $data
-     */
-
-    /**
      * Constructor
      *
      * @param RequestInterface $request the initiating request.
