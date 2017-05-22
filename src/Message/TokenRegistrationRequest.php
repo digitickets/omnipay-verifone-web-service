@@ -27,7 +27,7 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
 <purchase>true</purchase>
 <refund>true</refund>
 <cashback>false</cashback>
-<tokenexpirationdate>14092018</tokenexpirationdate>
+<tokenexpirationdate>31122030</tokenexpirationdate>
 </vgtokenregistrationrequest>';
     }
 

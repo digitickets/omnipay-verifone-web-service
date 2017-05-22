@@ -96,4 +96,14 @@ class Gateway extends AbstractGateway
             $parameters
         );
     }
+
+    // @TODO: Create a method specifically called "refund".
+    // @TODO: The request object needs to receive a parameter of "transactionReference" - extract the token id out of there.
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\RefundRequest',
+            $parameters
+        );
+    }
 }
