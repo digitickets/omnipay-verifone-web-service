@@ -31,11 +31,30 @@ And run composer to update your dependencies:
     $ curl -s http://getcomposer.org/installer | php
     $ php composer.phar update
 
+## What's Included
+
+This driver currently only supports Session-Based transactions.
+
+## What's Not Included
+
+This driver currently does not support Non-Session-Based transactions.
+
+It does not currently support PAYERAUTH.
+
+It does not currently support refunds.
+
 ## Basic Usage
 
-This driver supports two transaction types:
- * Purchase (including 3D Secure support if card holder is registered).
- * Refund (you will need to send Verifone's reference from the original transaction as the 'transactionReference' parameter).
+This driver supports the following process:
+
+Generate Session Request -> Generate Session Response\
+-> \<card form submission to Verifone>\
+-> Get Card Details Request -> Get Card Details Response\
+-> Purchase Request -> Purchase Response\
+Then one of:\
+-> Confirm Request -> Confirm Response\
+or\
+-> Reject Request -> Reject Response
 
 For general Omnipay usage instructions, please see the main [Omnipay](https://github.com/omnipay/omnipay)
 repository.
