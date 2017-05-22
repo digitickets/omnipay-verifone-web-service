@@ -65,6 +65,14 @@ class Gateway extends AbstractGateway
         );
     }
 
+    public function tokenRegistration(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\TokenRegistrationRequest',
+            $parameters
+        );
+    }
+
     public function purchase(array $parameters = array())
     {
         return $this->createRequest(

@@ -4,6 +4,8 @@ namespace DigiTickets\VerifoneWebService\Message;
 
 class PurchaseResponse extends AbstractRemoteResponse
 {
+    protected $tokenId;
+
     /**
      * Return the error message
      *
@@ -16,7 +18,7 @@ class PurchaseResponse extends AbstractRemoteResponse
 
     public function getTransactionId()
     {
-        return $this->data->getMsgDataAttribute('transactionid');
+        return (string) $this->data->getMsgDataAttribute('transactionid');
     }
 
     public function getMessage()
@@ -26,11 +28,24 @@ class PurchaseResponse extends AbstractRemoteResponse
 
     public function getTransactionReference()
     {
-        return $this->getTransactionId();
+        return json_encode([
+            'transactionId' => $this->getTransactionId(),
+            'tokenId' => $this->getTokenId()
+        ]);
     }
 
     public function getAuthCode()
     {
         return $this->data->getMsgDataAttribute('authcode');
+    }
+
+    public function setTokenId($value)
+    {
+        $this->tokenId = $value;
+    }
+
+    protected function getTokenId()
+    {
+        return (string) $this->tokenId;
     }
 }
