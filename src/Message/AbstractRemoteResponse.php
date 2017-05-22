@@ -41,6 +41,36 @@ abstract class AbstractRemoteResponse extends AbstractResponse
      */
     abstract public function getError();
 
+    /**
+     * Return the error message by looking at the error code & description
+     *
+     * @return string
+     */
+    protected function getErrorByErrorCode()
+    {
+        // Get the error code and description.
+        $errorCode = $this->data->getMsgDataAttribute('errorcode');
+        $errorDescription = $this->data->getMsgDataAttribute('errordescription');
+        return $errorCode == '0' ? null : $errorCode . ' - ' . $errorDescription;
+    }
+
+    /**
+     * Return the error message by looking at the auth code & message.
+     *
+     * @return string
+     */
+    protected function getErrorByAuthCode()
+    {
+        // Determine the error message (if any).
+        // From Verifone Tech support: Successful transactions will respond with an auth code, auth message, and
+        // other fields, however unsuccessful transactions will return with an error code and error description.
+        // They also say to use a generic error message ("Your transaction was unsuccessful"), rather than trying
+        // to build a message from the response.
+        $authcode = $this->data->getMsgDataAttribute('authcode');
+        $authmessage = $this->data->getMsgDataAttribute('authmessage');
+        return !empty($authcode) && !empty($authmessage) ? null : 'Your transaction was unsuccessful. Please try again';
+    }
+
     protected function convertDataToProcessMsg()
     {
         // $this->data starts off as an instance of stdClass. We are going to convert it into an instance of

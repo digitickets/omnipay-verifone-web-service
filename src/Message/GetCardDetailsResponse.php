@@ -11,9 +11,6 @@ class GetCardDetailsResponse extends AbstractRemoteResponse
      */
     public function getError()
     {
-        // Get the error code and description.
-        $errorCode = $this->data->getMsgDataAttribute('errorcode');
-        $errorDescription = $this->data->getMsgDataAttribute('errordescription');
-        return $errorCode == '0' ? null : $errorCode.' - '.$errorDescription;
+        return $this->getErrorByErrorCode();
     }
 }
