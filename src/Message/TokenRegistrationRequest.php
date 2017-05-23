@@ -53,21 +53,25 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
 
     public function getPurchase()
     {
-        return $this->getParameter('purchase');
+        return 'true';
     }
 
     public function getRefund()
     {
-        return $this->getParameter('refund');
+        return 'true';
     }
 
     public function getCashback()
     {
-        return $this->getParameter('cashback');
+        return 'false';
     }
 
     public function getTokenexpirationdate()
     {
-        return $this->getParameter('tokenexpirationdate');
+        // The default lifetime for a token is a fairly arbitrary 2 years.
+        $today = new \DateTime();
+        $twoYearsHence = $today->add(new \DateInterval('P2Y'))->format('dmY');
+
+        return $twoYearsHence;
     }
 }

@@ -85,38 +85,38 @@ class PurchaseRequest extends AbstractRemoteRequest
         return $this->getParameter('currencyNumber');
     }
 
-    public function getAccountPasscode()
-    {
-        return $this->getParameter('accountPasscode');
-    }
-
     public function setAccountPasscode($value)
     {
         return $this->setParameter('accountPasscode', $value);
     }
 
+    public function getAccountPasscode()
+    {
+        return $this->getParameter('accountPasscode');
+    }
+
     public function getTxntype()
     {
-        return $this->getParameter('txntype');
+        return '01';
     }
 
     public function getApacsterminalcapabilities()
     {
-        return $this->getParameter('apacsterminalcapabilities');
+        return '4298';
     }
 
     public function getCapturemethod()
     {
-        return $this->getParameter('capturemethod');
+        return '12';
     }
 
     public function getProcessingidentifier()
     {
-        return $this->getParameter('processingidentifier');
+        return '1';
     }
 
     public function getReturnhash()
     {
-        return $this->getParameter('returnhash');
+        return '0';
     }
 }

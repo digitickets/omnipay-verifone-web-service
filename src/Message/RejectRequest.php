@@ -35,6 +35,11 @@ class RejectRequest extends AbstractRemoteRequest
         return new RejectResponse($request, $response);
     }
 
+    public function setCapturemethod($value)
+    {
+        return $this->setParameter('capturemethod', $value);
+    }
+
     public function getCapturemethod()
     {
         return $this->getParameter('capturemethod');

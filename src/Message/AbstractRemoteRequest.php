@@ -6,7 +6,6 @@ use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg;
 use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message;
 use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message\ClientHeader;
 use Omnipay\Common\Message\AbstractRequest;
-use SimpleXMLElement;
 
 /**
  * Verifone Web Service Purchase Request
