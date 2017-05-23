@@ -21,7 +21,7 @@ class RejectRequest extends AbstractRemoteRequest
 <vgrejectionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="VANGUARD">
 <sessionguid>'.$this->getSessionGuid().'</sessionguid>
 <transactionid>'.$this->getTransactionId().'</transactionid>
-<capturemethod>12</capturemethod>
+<capturemethod>'.$this->getCapturemethod().'</capturemethod>
 </vgrejectionrequest>';
     }
 
@@ -33,5 +33,10 @@ class RejectRequest extends AbstractRemoteRequest
     protected function buildResponse($request, $response)
     {
         return new RejectResponse($request, $response);
+    }
+
+    public function getCapturemethod()
+    {
+        return $this->getParameter('capturemethod');
     }
 }

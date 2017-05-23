@@ -5,7 +5,7 @@ namespace DigiTickets\VerifoneWebService\Message;
 class PurchaseRequest extends AbstractRemoteRequest
 {
     // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
-    protected $sendConfirmOrReject;
+    protected $shouldSendConfirmOrReject;
 
     /**
      * @return string
@@ -25,17 +25,17 @@ class PurchaseRequest extends AbstractRemoteRequest
 <sessionguid>'.$this->getSessionGuid().'</sessionguid>
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <accountid>'.$this->getAccountId().'</accountid>
-<txntype>01</txntype>
+<txntype>'.$this->getTxntype().'</txntype>
 <transactioncurrencycode>'.$this->getCurrencyNumber().'</transactioncurrencycode>
-<apacsterminalcapabilities>4298</apacsterminalcapabilities>
-<capturemethod>12</capturemethod>
-<processingidentifier>1</processingidentifier>
+<apacsterminalcapabilities>'.$this->getApacsterminalcapabilities().'</apacsterminalcapabilities>
+<capturemethod>'.$this->getCapturemethod().'</capturemethod>
+<processingidentifier>'.$this->getProcessingidentifier().'</processingidentifier>
 <avshouse>'.$this->getHouse().'</avshouse>
 <avspostcode>'.str_replace(' ', '', $this->getPostcodeDigits()).'</avspostcode>
 <txnvalue>'.$this->getAmount().'</txnvalue>
 <terminalcountrycode>'.$this->getCurrencyNumber().'</terminalcountrycode>
 <accountpasscode>'.$this->getAccountPasscode().'</accountpasscode>
-<returnhash>0</returnhash>
+<returnhash>'.$this->getReturnhash().'</returnhash>
 </vgtransactionrequest>';
     }
 
@@ -93,5 +93,30 @@ class PurchaseRequest extends AbstractRemoteRequest
     public function setAccountPasscode($value)
     {
         return $this->setParameter('accountPasscode', $value);
+    }
+
+    public function getTxntype()
+    {
+        return $this->getParameter('txntype');
+    }
+
+    public function getApacsterminalcapabilities()
+    {
+        return $this->getParameter('apacsterminalcapabilities');
+    }
+
+    public function getCapturemethod()
+    {
+        return $this->getParameter('capturemethod');
+    }
+
+    public function getProcessingidentifier()
+    {
+        return $this->getParameter('processingidentifier');
+    }
+
+    public function getReturnhash()
+    {
+        return $this->getParameter('returnhash');
     }
 }

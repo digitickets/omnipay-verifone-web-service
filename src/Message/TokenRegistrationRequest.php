@@ -24,10 +24,10 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
 <expirydate>'.$this->getExpiryDateYYMM().'</expirydate>
 <startdate />
 <issueno />
-<purchase>true</purchase>
-<refund>true</refund>
-<cashback>false</cashback>
-<tokenexpirationdate>31122030</tokenexpirationdate>
+<purchase>'.$this->getPurchase().'</purchase>
+<refund>'.$this->getRefund().'</refund>
+<cashback>'.$this->getCashback().'</cashback>
+<tokenexpirationdate>'.$this->getTokenexpirationdate().'</tokenexpirationdate>
 </vgtokenregistrationrequest>';
     }
 
@@ -49,5 +49,25 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
     public function getExpiryDateYYMM()
     {
         return $this->getParameter('expiryDateYYMM');
+    }
+
+    public function getPurchase()
+    {
+        return $this->getParameter('purchase');
+    }
+
+    public function getRefund()
+    {
+        return $this->getParameter('refund');
+    }
+
+    public function getCashback()
+    {
+        return $this->getParameter('cashback');
+    }
+
+    public function getTokenexpirationdate()
+    {
+        return $this->getParameter('tokenexpirationdate');
     }
 }

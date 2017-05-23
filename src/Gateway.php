@@ -9,6 +9,24 @@ class Gateway extends AbstractGateway
     protected $liveCardFormPostUrl = 'TBA';
     protected $testCardFormPostUrl = 'https://vg-cst.cxmlpg.com/vanguard.aspx';
 
+    public function getDefaultParameters()
+    {
+        // The default lifetime for a token is a fairly arbitrary 2 years.
+        $today = new \DateTime();
+        $twoYearsHence = $today->add(new \DateInterval('P2Y'))->format('dmY');
+        return array(
+            'txntype' => '01',
+            'apacsterminalcapabilities' => '4298',
+            'capturemethod' => '12',
+            'processingidentifier' => '1',
+            'returnhash' => '0',
+            'purchase' => true,
+            'refund' => true,
+            'cashback' => false,
+            'tokenexpirationdate' => $twoYearsHence
+        );
+    }
+
     public function getCardFormPostUrl()
     {
         return ($this->getTestMode() ? $this->testCardFormPostUrl : $this->liveCardFormPostUrl);

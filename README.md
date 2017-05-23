@@ -35,6 +35,8 @@ And run composer to update your dependencies:
 
 This driver currently only supports Session-Based transactions.
 
+If you register a token, by default repeat payments will be available on any payments, although actually making repeat payments is not yet implemented.
+
 ## What's Not Included
 
 This driver currently does not support Non-Session-Based transactions.
@@ -50,6 +52,7 @@ This driver supports the following process:
 Generate Session Request -> Generate Session Response\
 -> \<card form submission to Verifone>\
 -> Get Card Details Request -> Get Card Details Response\
+-> Token Registration Request -> Token Registration Response [optional step]\
 -> Purchase Request -> Purchase Response\
 Then one of:\
 -> Confirm Request -> Confirm Response\
