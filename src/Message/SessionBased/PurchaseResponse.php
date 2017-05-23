@@ -1,6 +1,8 @@
 <?php
 
-namespace DigiTickets\VerifoneWebService\Message;
+namespace DigiTickets\VerifoneWebService\Message\SessionBased;
+
+use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 
 class PurchaseResponse extends AbstractRemoteResponse
 {
@@ -18,7 +20,7 @@ class PurchaseResponse extends AbstractRemoteResponse
 
     public function getTransactionId()
     {
-        return (string) $this->data->getMsgDataAttribute('transactionid');
+        return $this->data->getMsgDataAttribute('transactionid');
     }
 
     public function getMessage()

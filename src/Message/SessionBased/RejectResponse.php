@@ -1,6 +1,8 @@
 <?php
 
-namespace DigiTickets\VerifoneWebService\Message;
+namespace DigiTickets\VerifoneWebService\Message\SessionBased;
+
+use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 
 class RejectResponse extends AbstractRemoteResponse
 {

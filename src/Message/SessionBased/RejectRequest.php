@@ -1,6 +1,10 @@
 <?php
 
-namespace DigiTickets\VerifoneWebService\Message;
+namespace DigiTickets\VerifoneWebService\Message\SessionBased;
+
+use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
+use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
+use Omnipay\Common\Message\RequestInterface;
 
 class RejectRequest extends AbstractRemoteRequest
 {

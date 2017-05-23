@@ -52,7 +52,7 @@ class Gateway extends AbstractGateway
     public function generateSession(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\GenerateSessionRequest',
+            '\DigiTickets\VerifoneWebService\Message\SessionBased\GenerateSessionRequest',
             $parameters
         );
     }
@@ -60,7 +60,7 @@ class Gateway extends AbstractGateway
     public function getCardDetails(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\GetCardDetailsRequest',
+            '\DigiTickets\VerifoneWebService\Message\SessionBased\GetCardDetailsRequest',
             $parameters
         );
     }
@@ -68,7 +68,7 @@ class Gateway extends AbstractGateway
     public function tokenRegistration(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\TokenRegistrationRequest',
+            '\DigiTickets\VerifoneWebService\Message\SessionBased\TokenRegistrationRequest',
             $parameters
         );
     }
@@ -76,7 +76,7 @@ class Gateway extends AbstractGateway
     public function purchase(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\PurchaseRequest',
+            '\DigiTickets\VerifoneWebService\Message\SessionBased\PurchaseRequest',
             $parameters
         );
     }
@@ -84,7 +84,7 @@ class Gateway extends AbstractGateway
     public function confirm(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\ConfirmRequest',
+            '\DigiTickets\VerifoneWebService\Message\SessionBased\ConfirmRequest',
             $parameters
         );
     }
@@ -92,7 +92,7 @@ class Gateway extends AbstractGateway
     public function reject(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\RejectRequest',
+            '\DigiTickets\VerifoneWebService\Message\SessionBased\RejectRequest',
             $parameters
         );
     }
@@ -102,7 +102,7 @@ class Gateway extends AbstractGateway
     public function refund(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\RefundRequest',
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RefundRequest',
             $parameters
         );
     }

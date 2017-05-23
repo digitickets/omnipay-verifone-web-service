@@ -45,7 +45,7 @@ class Message
         // in all the messages, which we don't want to do.
         $MsgDataAsObject = simplexml_load_string($this->MsgData, 'SimpleXMLElement', LIBXML_NOWARNING);
 
-        return $MsgDataAsObject->$attributeName;
+        return (string) $MsgDataAsObject->$attributeName;
     }
 
     /**
