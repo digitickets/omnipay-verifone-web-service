@@ -1,6 +1,6 @@
 <?php
 
-namespace DigiTickets\VerifoneWebService\Message\SessionBased;
+namespace DigiTickets\VerifoneWebService\Message\NonSessionBased;
 
 use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 
@@ -13,6 +13,15 @@ class RefundResponse extends AbstractRemoteResponse
      */
     public function getError()
     {
-        return $this->getErrorByErrorCode();
+        // Get the transaction result and auth message.
+        $txnResult = $this->data->getMsgDataAttribute('txnresult');
+        $authmessage = $this->data->getMsgDataAttribute('authmessage');
+
+        return $txnResult == 'APPROVED' ? null : $authmessage;
+    }
+
+    public function getTransactionId()
+    {
+        return $this->data->getMsgDataAttribute('transactionid');
     }
 }

@@ -97,12 +97,26 @@ class Gateway extends AbstractGateway
         );
     }
 
-    // @TODO: Create a method specifically called "refund".
-    // @TODO: The request object needs to receive a parameter of "transactionReference" - extract the token id out of there.
     public function refund(array $parameters = array())
     {
         return $this->createRequest(
             '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RefundRequest',
+            $parameters
+        );
+    }
+
+    public function confirmRefundRequest(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\ConfirmRequest',
+            $parameters
+        );
+    }
+
+    public function rejectRefundRequest(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RejectRequest',
             $parameters
         );
     }
