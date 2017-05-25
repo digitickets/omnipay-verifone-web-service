@@ -1,5 +1,4 @@
 # omnipay-verifone-web-service
-**THIS IS CURRENTLY WORK IN PROGRESS**
 
 **Verifone Web Service driver for the Omnipay PHP payment processing library**
 
@@ -33,27 +32,32 @@ And run composer to update your dependencies:
 
 ## What's Included
 
-This driver currently only supports Session-Based transactions.
+This driver currently only supports Session-Based transactions, except for refunds, which are non-session-based and have been implemented.
 
 If you register a token, by default repeat payments will be available on any payments, although actually making repeat payments is not yet implemented.
 
 ## What's Not Included
 
-This driver currently does not support Non-Session-Based transactions.
+This driver currently does not support Non-Session-Based transactions (except refunds, as above).
 
 It does not currently support PAYERAUTH.
 
-It does not currently support refunds.
-
 ## Basic Usage
 
-This driver supports the following process:
+This driver supports the following process to handle a transaction:
 
 Generate Session Request -> Generate Session Response\
 -> \<card form submission to Verifone>\
 -> Get Card Details Request -> Get Card Details Response\
 -> Token Registration Request -> Token Registration Response [optional step]\
 -> Purchase Request -> Purchase Response\
+Then one of:\
+-> Confirm Request -> Confirm Response\
+or\
+-> Reject Request -> Reject Response
+
+It also supports making a refund:
+Transaction (Refund) Request (non-session-based) -> Refund Response
 Then one of:\
 -> Confirm Request -> Confirm Response\
 or\
