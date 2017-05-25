@@ -38,14 +38,4 @@ class ConfirmRequest extends AbstractRemoteRequest
     {
         return new ConfirmResponse($request, $response);
     }
-
-    public function getSessionGuid()
-    {
-        return $this->getParameter('sessionGuid');
-    }
-
-    public function setSessionGuid($value)
-    {
-        return $this->setParameter('sessionGuid', $value);
-    }
 }

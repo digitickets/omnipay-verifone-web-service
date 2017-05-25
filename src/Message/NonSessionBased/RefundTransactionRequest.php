@@ -6,7 +6,7 @@ use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
 use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 use Omnipay\Common\Message\RequestInterface;
 
-class RefundRequest extends AbstractTransactionRequest
+class RefundTransactionRequest extends AbstractTransactionRequest
 {
     // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
     protected $shouldSendConfirmOrReject;

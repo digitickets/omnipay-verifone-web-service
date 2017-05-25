@@ -100,7 +100,7 @@ class Gateway extends AbstractGateway
     public function refund(array $parameters = array())
     {
         return $this->createRequest(
-            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RefundRequest',
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RefundTransactionRequest',
             $parameters
         );
     }
