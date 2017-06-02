@@ -4,7 +4,7 @@ namespace DigiTickets\VerifoneWebService;
 
 use Omnipay\Common\AbstractGateway;
 
-class Gateway extends AbstractGateway
+class SessionBasedGateway extends AbstractGateway
 {
     protected $liveCardFormPostUrl = 'TBA';
     protected $testCardFormPostUrl = 'https://vg-cst.cxmlpg.com/vanguard.aspx';
