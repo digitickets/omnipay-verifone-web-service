@@ -36,6 +36,14 @@ class Message
     }
 
     /**
+     * @return string
+     */
+    public function getMsgType()
+    {
+        return $this->MsgType;
+    }
+
+    /**
      * @param string $attributeName
      * @return string
      */

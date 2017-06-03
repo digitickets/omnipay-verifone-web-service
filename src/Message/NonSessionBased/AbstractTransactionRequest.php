@@ -73,9 +73,15 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
         return $this->getParameter('currencyNumber');
     }
 
-    abstract public function getApacsterminalcapabilities();
+    public function getApacsterminalcapabilities()
+    {
+        return '4298';
+    }
 
-    abstract public function getCapturemethod();
+    public function getCapturemethod()
+    {
+        return '12';
+    }
 
     abstract public function getProcessingidentifier();
 

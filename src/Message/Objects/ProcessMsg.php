@@ -21,6 +21,14 @@ class ProcessMsg
     }
 
     /**
+     * @return string
+     */
+    public function getMsgType()
+    {
+        return $this->Message->getMsgType();
+    }
+
+    /**
      * @param string $attributeName
      * @return string
      */

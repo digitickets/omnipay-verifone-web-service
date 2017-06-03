@@ -3,7 +3,9 @@
 namespace DigiTickets\VerifoneWebService\Message\NonSessionBased;
 
 use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
+use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 use DigiTickets\VerifoneWebService\Message\RejectResponse;
+use Omnipay\Common\Message\RequestInterface;
 
 class RejectRequest extends AbstractRemoteRequest
 {

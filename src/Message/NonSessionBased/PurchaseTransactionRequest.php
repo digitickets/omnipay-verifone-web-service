@@ -2,23 +2,32 @@
 
 namespace DigiTickets\VerifoneWebService\Message\NonSessionBased;
 
-use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
 use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 use Omnipay\Common\Message\RequestInterface;
 
-class RefundTransactionRequest extends AbstractTransactionRequest
+class PurchaseTransactionRequest extends AbstractTransactionRequest
 {
     // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
     protected $shouldSendConfirmOrReject;
 
     public function getTxnType()
     {
-        return '02';
+        return '01';
     }
 
     public function getProcessingidentifier()
     {
-        return '3';
+        return '1';
+    }
+
+    public function setTokenId($value)
+    {
+        return $this->setParameter('tokenId', $value);
+    }
+
+    public function getTokenId()
+    {
+        return $this->getParameter('tokenId');
     }
 
     /**
@@ -28,6 +37,6 @@ class RefundTransactionRequest extends AbstractTransactionRequest
      */
     protected function buildResponse($request, $response)
     {
-        return new RefundResponse($request, $response);
+        return new PurchaseResponse($request, $response);
     }
 }

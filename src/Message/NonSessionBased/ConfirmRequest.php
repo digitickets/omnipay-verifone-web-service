@@ -3,7 +3,9 @@
 namespace DigiTickets\VerifoneWebService\Message\NonSessionBased;
 
 use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
+use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 use DigiTickets\VerifoneWebService\Message\ConfirmResponse;
+use Omnipay\Common\Message\RequestInterface;
 
 class ConfirmRequest extends AbstractRemoteRequest
 {
@@ -41,11 +43,11 @@ class ConfirmRequest extends AbstractRemoteRequest
 
     public function setTransactionId($value)
     {
-        return $this->setParameter('transactionid', $value);
+        return $this->setParameter('transactionId', $value);
     }
 
     public function getTransactionId()
     {
-        return $this->getParameter('transactionid');
+        return $this->getParameter('transactionId');
     }
 }
