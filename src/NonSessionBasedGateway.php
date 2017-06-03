@@ -14,6 +14,9 @@ class NonSessionBasedGateway extends AbstractVerifoneGateway
 
     public function purchase(array $parameters = array())
     {
+        $parameters['tokenRegistrationRequest'] = $this->tokenRegistration($parameters);
+        $parameters['confirmRequest'] = $this->confirm($parameters);
+        $parameters['rejectRequest'] = $this->reject($parameters);
         return $this->createRequest(
             '\DigiTickets\VerifoneWebService\Message\NonSessionBased\PurchaseTransactionRequest',
             $parameters
