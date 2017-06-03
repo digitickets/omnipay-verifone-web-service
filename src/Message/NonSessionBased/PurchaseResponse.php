@@ -16,10 +16,8 @@ class PurchaseResponse extends AbstractRemoteResponse
     public function getError()
     {
         $msgType = $this->data->getMsgType();
-        $errorCode = $this->data->getMsgDataAttribute('CODE');
-        $errorDescription = $this->data->getMsgDataAttribute('MSGTXT');
 
-        return $msgType == 'TRM' ? null : $errorCode . ' - ' . $errorDescription;
+        return $msgType == 'TRM' ? null : 'Your transaction was unsuccessful. Please try again';
     }
 
     public function getTransactionId()
@@ -34,7 +32,8 @@ class PurchaseResponse extends AbstractRemoteResponse
 
     public function getMessage()
     {
-        return $this->data->getMsgDataAttribute('authmessage');
+        $error = $this->getError();
+        return is_null($error) ? $this->getAuthMessage() : $error;
     }
 
     public function getTransactionReference()
@@ -49,4 +48,10 @@ class PurchaseResponse extends AbstractRemoteResponse
     {
         return $this->data->getMsgDataAttribute('authcode');
     }
+
+    public function getAuthMessage()
+    {
+        return $this->data->getMsgDataAttribute('authmessage');
+    }
+
 }

@@ -6,7 +6,6 @@ use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg;
 use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message;
 use DigiTickets\VerifoneWebService\Message\Objects\ProcessMsg\Message\ClientHeader;
 use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 abstract class AbstractRemoteResponse extends AbstractResponse

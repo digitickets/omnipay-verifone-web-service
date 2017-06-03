@@ -14,10 +14,8 @@ class TokenRegistrationResponse extends AbstractRemoteResponse
     public function getError()
     {
         $msgType = $this->data->getMsgType();
-        $errorCode = $this->data->getMsgDataAttribute('CODE');
-        $errorDescription = $this->data->getMsgDataAttribute('MSGTXT');
 
-        return $msgType == 'TOKENRESPONSE' ? null : $errorCode . ' - ' . $errorDescription;
+        return $msgType == 'TOKENRESPONSE' ? null : 'Your transaction was unsuccessful. Please try again';
     }
 
     public function getTokenId()
