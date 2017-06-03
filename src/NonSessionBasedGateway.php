@@ -35,4 +35,28 @@ class NonSessionBasedGateway extends AbstractVerifoneGateway
             $parameters
         );
     }
+
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RefundTransactionRequest',
+            $parameters
+        );
+    }
+
+    public function confirmRefundRequest(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\ConfirmRequest',
+            $parameters
+        );
+    }
+
+    public function rejectRefundRequest(array $parameters = array())
+    {
+        return $this->createRequest(
+            '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RejectRequest',
+            $parameters
+        );
+    }
 }

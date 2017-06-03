@@ -2,7 +2,6 @@
 
 namespace DigiTickets\VerifoneWebService\Message\NonSessionBased;
 
-use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
 use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 use Omnipay\Common\Message\RequestInterface;
 

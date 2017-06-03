@@ -31,4 +31,22 @@ class PurchaseResponse extends AbstractRemoteResponse
     {
         $this->tokenId = $value;
     }
+
+    public function getMessage()
+    {
+        return $this->data->getMsgDataAttribute('authmessage');
+    }
+
+    public function getTransactionReference()
+    {
+        return json_encode([
+            'transactionId' => $this->getTransactionId(),
+            'tokenId' => $this->request->getTokenId()
+        ]);
+    }
+
+    public function getAuthCode()
+    {
+        return $this->data->getMsgDataAttribute('authcode');
+    }
 }
