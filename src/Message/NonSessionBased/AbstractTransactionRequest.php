@@ -7,6 +7,25 @@ use DigiTickets\VerifoneWebService\Message\AbstractRemoteRequest;
 abstract class AbstractTransactionRequest extends AbstractRemoteRequest
 {
     /**
+     * @var ConfirmRequest
+     */
+    protected $confirmRequest;
+    /**
+     * @var RejectRequest
+     */
+    protected $rejectRequest;
+
+    public function setConfirmRequest(ConfirmRequest $confirmRequest)
+    {
+        $this->confirmRequest = $confirmRequest;
+    }
+
+    public function setRejectRequest(RejectRequest $rejectRequest)
+    {
+        $this->rejectRequest = $rejectRequest;
+    }
+
+    /**
      * @return string
      */
     public function getMsgType()
@@ -35,6 +54,7 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
 <txnvalue>'.$this->getAmount().'</txnvalue>
 <transactiondatetime>'.$this->getTransactiondatetime().'</transactiondatetime>
 </transactionrequest>';
+error_log('This is the message we are sending: '.$tmp);
 
         return $tmp; // @TODO: Put this back to returning the raw expression.
     }

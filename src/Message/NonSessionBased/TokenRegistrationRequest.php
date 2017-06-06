@@ -44,6 +44,7 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
      */
     protected function buildResponse($request, $response)
     {
+error_log('Token reg response: ' . var_export($response, true));
         return new TokenRegistrationResponse($request, $response);
     }
 

@@ -29,6 +29,7 @@ class RejectRequest extends AbstractRemoteRequest
 <tokenid>'.$this->getTokenId().'</tokenid>
 <capturemethod>12</capturemethod>
 </rejectionrequest>';
+error_log('Sending this NSB reject message: '.$tmp);
 
         return $tmp; // @TODO: Put this back to returning the raw expression.
     }

@@ -7,17 +7,6 @@ use Omnipay\Common\Message\RequestInterface;
 
 class PurchaseTransactionRequest extends AbstractTransactionRequest
 {
-    // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
-    protected $shouldSendConfirmOrReject;
-    /**
-     * @var ConfirmRequest
-     */
-    protected $confirmRequest;
-    /**
-     * @var RejectRequest
-     */
-    protected $rejectRequest;
-
     public function setTokenRegistrationRequest(TokenRegistrationRequest $tokenRegistrationRequest)
     {
         // Register a token, and store it in the purchase request.
@@ -31,16 +20,6 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
         if ($tokenRegistrationResponse->isSuccessful()) {
             $this->setTokenId($tokenRegistrationResponse->getTokenId());
         }
-    }
-
-    public function setConfirmRequest(ConfirmRequest $confirmRequest)
-    {
-        $this->confirmRequest = $confirmRequest;
-    }
-
-    public function setRejectRequest(RejectRequest $rejectRequest)
-    {
-        $this->rejectRequest = $rejectRequest;
     }
 
     public function getTxnType()
@@ -73,14 +52,17 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
         $purchaseResponse = new PurchaseResponse($request, $response);
 
         // We need to send a confirm or reject message, depending on the result of the response.
-        $confirmOrReject = $purchaseResponse->isSuccessful() ? $this->confirmRequest : $this->rejectRequest;
-        $confirmOrReject->setTransactionId($purchaseResponse->getTransactionId());
-        try {
-            // We don't care about the response!
-            // However, if there was a problem, eg timeout, we try once more.
-            $confirmOrReject->send();
-        } catch(\SoapFault $e) {
-            $confirmOrReject->send();
+        // Make sure we've got both request objects available.
+        if (!empty($this->confirmRequest) && !empty($this->rejectRequest)) {
+            $confirmOrReject = $purchaseResponse->isSuccessful() ? $this->confirmRequest : $this->rejectRequest;
+            $confirmOrReject->setTransactionId($purchaseResponse->getTransactionId());
+            try {
+                // We don't care about the response!
+                // However, if there was a problem, eg timeout, we try once more.
+                $confirmOrReject->send();
+            } catch (\SoapFault $e) {
+                $confirmOrReject->send();
+            }
         }
 
         return $purchaseResponse;

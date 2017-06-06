@@ -8,9 +8,6 @@ use Omnipay\Common\Message\RequestInterface;
 
 class PurchaseRequest extends AbstractRemoteRequest
 {
-    // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
-    protected $shouldSendConfirmOrReject;
-
     /**
      * @return string
      */

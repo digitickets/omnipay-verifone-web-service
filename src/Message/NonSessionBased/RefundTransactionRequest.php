@@ -7,9 +7,6 @@ use Omnipay\Common\Message\RequestInterface;
 
 class RefundTransactionRequest extends AbstractTransactionRequest
 {
-    // This is just a "flag" to tell controllers that the response from this request needs to be confirmed/rejected.
-    protected $shouldSendConfirmOrReject;
-
     public function getTxnType()
     {
         return '02';
@@ -21,12 +18,25 @@ class RefundTransactionRequest extends AbstractTransactionRequest
     }
 
     /**
-     * @param RequestInterface $request
+     * @param RequestInterface|RefundTransactionRequest $request
      * @param mixed $response
      * @return AbstractRemoteResponse
      */
     protected function buildResponse($request, $response)
     {
-        return new RefundResponse($request, $response);
+        $refundResponse = new RefundResponse($request, $response);
+
+        // We need to send a confirm or reject message, depending on the result of the response.
+        // Make sure we've got both request objects available.
+        if (!empty($this->confirmRequest) && !empty($this->rejectRequest)) {
+            $confirmOrReject = $refundResponse->isSuccessful() ? $this->confirmRequest : $this->rejectRequest;
+            if (is_callable([$confirmOrReject, 'setTokenId'])) {
+                $confirmOrReject->setTokenId($request->getTokenId());
+            }
+            // We don't care about the response!
+            $confirmOrReject->send();
+        }
+
+        return $refundResponse;
     }
 }

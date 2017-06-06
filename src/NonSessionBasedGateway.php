@@ -41,6 +41,8 @@ class NonSessionBasedGateway extends AbstractVerifoneGateway
 
     public function refund(array $parameters = array())
     {
+        $parameters['confirmRequest'] = $this->confirm($parameters);
+        $parameters['rejectRequest'] = $this->reject($parameters);
         return $this->createRequest(
             '\DigiTickets\VerifoneWebService\Message\NonSessionBased\RefundTransactionRequest',
             $parameters
