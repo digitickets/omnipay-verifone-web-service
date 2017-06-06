@@ -23,15 +23,12 @@ class RejectRequest extends AbstractRemoteRequest
     public function getMsgData()
     {
         // Note: Some of the optional elements have been omitted. If added back in, make sure they're not populated for refunds.
-        $tmp = '<?xml version="1.0"?>
+        return '<?xml version="1.0"?>
 <rejectionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="TXN">
 <transactionid>'.$this->getTransactionId().'</transactionid>
 <tokenid>'.$this->getTokenId().'</tokenid>
 <capturemethod>12</capturemethod>
 </rejectionrequest>';
-error_log('Sending this NSB reject message: '.$tmp);
-
-        return $tmp; // @TODO: Put this back to returning the raw expression.
     }
 
     /**

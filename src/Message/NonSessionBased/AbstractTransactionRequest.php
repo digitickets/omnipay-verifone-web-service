@@ -39,7 +39,7 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
     public function getMsgData()
     {
         // Note: Some of the optional elements have been omitted. If added back in, make sure they're not populated for refunds.
-        $tmp = '<?xml version="1.0"?>
+        return '<?xml version="1.0"?>
 <transactionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="'.$this->getMsgType().'">
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <accountid>'.$this->getAccountId().'</accountid>
@@ -54,9 +54,6 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
 <txnvalue>'.$this->getAmount().'</txnvalue>
 <transactiondatetime>'.$this->getTransactiondatetime().'</transactiondatetime>
 </transactionrequest>';
-error_log('This is the message we are sending: '.$tmp);
-
-        return $tmp; // @TODO: Put this back to returning the raw expression.
     }
 
     public function setTransactionId($value)

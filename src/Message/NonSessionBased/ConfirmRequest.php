@@ -23,12 +23,10 @@ class ConfirmRequest extends AbstractRemoteRequest
     public function getMsgData()
     {
         // Note: Some of the optional elements have been omitted. If added back in, make sure they're not populated for refunds.
-        $tmp = '<?xml version="1.0"?>
+        return '<?xml version="1.0"?>
 <confirmationrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="TXN">
 <transactionid>'.$this->getTransactionId().'</transactionid>
 </confirmationrequest>';
-
-        return $tmp; // @TODO: Put this back to returning the raw expression.
     }
 
     /**

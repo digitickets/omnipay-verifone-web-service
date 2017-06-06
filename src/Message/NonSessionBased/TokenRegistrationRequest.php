@@ -21,7 +21,7 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
      */
     public function getMsgData()
     {
-        $tmp = '<?xml version="1.0"?>
+        return '<?xml version="1.0"?>
 <tokenregistrationrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="TOKEN">
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <pan>'.$this->getPan().'</pan>
@@ -33,8 +33,6 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
 <cashback>'.$this->getCashback().'</cashback>
 <tokenexpirationdate>'.$this->getTokenexpirationdate().'</tokenexpirationdate>
 </tokenregistrationrequest>';
-        // @TODO: Remove this tmp variable.
-        return $tmp;
     }
 
     /**
