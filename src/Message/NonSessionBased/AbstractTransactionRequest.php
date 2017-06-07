@@ -38,9 +38,14 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
      */
     public function getMsgData()
     {
-        // Note: Some of the optional elements have been omitted. If added back in, make sure they're not populated for refunds.
+        // Note: Some of the optional elements have been omitted.
+        // If added back in, make sure they're not populated for refunds.
         return '<?xml version="1.0"?>
-<transactionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="'.$this->getMsgType().'">
+<transactionrequest
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns="'.$this->getMsgType().'"
+>
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <accountid>'.$this->getAccountId().'</accountid>
 <accountpasscode>'.$this->getAccountPasscode().'</accountpasscode>
@@ -100,7 +105,8 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
 
     abstract public function getProcessingidentifier();
 
-    public function setTransactionReference($value) {
+    public function setTransactionReference($value)
+    {
         // This is a JSON object (converted to a string). One property is "tokenId".
         return $this->setParameter('transactionReference', $value);
     }

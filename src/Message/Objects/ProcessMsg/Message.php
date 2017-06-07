@@ -27,9 +27,9 @@ class Message
      */
     public function __construct(
         ClientHeader $ClientHeader,
-        string $MsgType,
-        string $MsgData)
-    {
+        $MsgType,
+        $MsgData
+    ) {
         $this->ClientHeader = $ClientHeader;
         $this->MsgType = $MsgType;
         $this->MsgData = $MsgData;

@@ -53,5 +53,4 @@ class PurchaseResponse extends AbstractRemoteResponse
     {
         return $this->data->getMsgDataAttribute('authmessage');
     }
-
 }

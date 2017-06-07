@@ -21,10 +21,15 @@ class GenerateSessionRequest extends AbstractRemoteRequest
      */
     public function getMsgData()
     {
-        return
-            '<?xml version="1.0"?><vggeneratesessionrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="VANGUARD"><returnurl>'.
-            $this->getParameter('returnUrl').
-            '</returnurl><fullcapture>true</fullcapture></vggeneratesessionrequest>';
+        return '<?xml version="1.0"?>
+<vggeneratesessionrequest
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns="VANGUARD"
+>
+<returnurl>'.$this->getParameter('returnUrl').'</returnurl>
+<fullcapture>true</fullcapture>
+</vggeneratesessionrequest>';
     }
 
     /**

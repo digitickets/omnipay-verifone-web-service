@@ -22,7 +22,11 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
     public function getMsgData()
     {
         return '<?xml version="1.0"?>
-<tokenregistrationrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="TOKEN">
+<tokenregistrationrequest
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns="TOKEN"
+>
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <pan>'.$this->getPan().'</pan>
 <expirydate>'.$this->getExpiryDateYYMM().'</expirydate>
@@ -42,7 +46,6 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
      */
     protected function buildResponse($request, $response)
     {
-error_log('Token reg response: ' . var_export($response, true));
         return new TokenRegistrationResponse($request, $response);
     }
 

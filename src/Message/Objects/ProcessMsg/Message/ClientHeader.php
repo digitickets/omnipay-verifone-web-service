@@ -44,14 +44,14 @@ class ClientHeader
      * @param string $Source
      */
     public function __construct(
-        int $SystemID,
-        string $SystemGUID,
-        string $Passcode,
-        string $ProcessingDB,
-        int $SendAttempt,
-        bool $CDATAWrapping,
-        string $Source)
-    {
+        $SystemID,
+        $SystemGUID,
+        $Passcode,
+        $ProcessingDB,
+        $SendAttempt,
+        $CDATAWrapping,
+        $Source
+    ) {
         $this->SystemID = $SystemID;
         $this->SystemGUID = $SystemGUID;
         $this->Passcode = $Passcode;

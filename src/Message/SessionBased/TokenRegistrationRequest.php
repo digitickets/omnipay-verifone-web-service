@@ -22,7 +22,11 @@ class TokenRegistrationRequest extends AbstractRemoteRequest
     public function getMsgData()
     {
         return '<?xml version="1.0"?>
-<vgtokenregistrationrequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="VANGUARD">
+<vgtokenregistrationrequest
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns="VANGUARD"
+>
 <sessionguid>'.$this->getSessionGuid().'</sessionguid>
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <expirydate>'.$this->getExpiryDateYYMM().'</expirydate>
