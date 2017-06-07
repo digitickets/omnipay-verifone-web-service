@@ -32,32 +32,33 @@ And run composer to update your dependencies:
 
 ## What's Included
 
-This driver currently only supports Session-Based transactions, except for refunds, which are non-session-based and have been implemented.
+This driver was originally written to support Session-Based transactions (except for refunds, which are non-session-based and were implemented). We then realised that Session-based didn't work for us, so Non Session-Based was implemented.
 
 If you register a token, by default repeat payments will be available on any payments, although actually making repeat payments is not yet implemented.
 
 ## What's Not Included
 
-This driver currently does not support Non-Session-Based transactions (except refunds, as above).
-
 It does not currently support PAYERAUTH.
+
+The Session-based code wasn't completely finished, although it does work as it is. Ideally the token registration and confirm/reject messages need to be handled inside the purchase/refund request classes.
 
 ## Basic Usage
 
-This driver supports the following process to handle a transaction:
+This driver supports the following processes to handle transactions and refunds:
+
+### Non Session-based
+
+Purchase Request (Transaction Request) -> Purchase Response (plus confirm/reject request)
+
+Refund Request (Transaction Request) -> Refund Response (plus confirm/reject request)
+
+### Session-based
 
 Generate Session Request -> Generate Session Response\
 -> \<card form submission to Verifone>\
 -> Get Card Details Request -> Get Card Details Response\
 -> Token Registration Request -> Token Registration Response [optional step]\
 -> Purchase Request -> Purchase Response\
-Then one of:\
--> Confirm Request -> Confirm Response\
-or\
--> Reject Request -> Reject Response
-
-It also supports making a refund:
-Transaction (Refund) Request (non-session-based) -> Refund Response
 Then one of:\
 -> Confirm Request -> Confirm Response\
 or\
