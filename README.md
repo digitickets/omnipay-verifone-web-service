@@ -32,9 +32,9 @@ And run composer to update your dependencies:
 
 ## What's Included
 
-This driver was originally written to support Session-Based transactions (except for refunds, which are non-session-based and were implemented). We then realised that Session-based didn't work for us, so Non Session-Based was implemented.
+This driver was originally written to support Session-Based transactions (except for refunds, which are non session-based and were implemented). We then realised that Session-based didn't work for us, so Non Session-Based was implemented.
 
-If you register a token, by default repeat payments will be available on any payments, although actually making repeat payments is not yet implemented.
+The driver registers a token when any purchase is made. This means repeat payments will be available on any payments, although actually making repeat payments is not yet implemented.
 
 ## What's Not Included
 
