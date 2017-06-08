@@ -32,14 +32,11 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
     {
         $card = $this->getCard();
 
-        return
-'
-<csc>'.$card->getCvv().'</csc>
+        return '<csc>'.$card->getCvv().'</csc>
 <avspostcode>'.$this->getPostcodeDigits($card->getBillingPostcode()).'</avspostcode>
 <issuenumber>'.$card->getIssueNumber().'</issuenumber>
 <expirydate>'.$card->getExpiryDate('ym').'</expirydate>
-<startdate>'.$card->getStartDate('my').'</startdate>
-';
+<startdate>'.$card->getStartDate('my').'</startdate>';
     }
 
     public function getTxnType()

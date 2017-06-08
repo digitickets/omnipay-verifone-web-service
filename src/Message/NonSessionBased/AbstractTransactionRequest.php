@@ -65,7 +65,7 @@ xmlns="'.$this->getMsgType().'"
 <capturemethod>'.$this->getCapturemethod().'</capturemethod>
 <processingidentifier>'.$this->getProcessingidentifier().'</processingidentifier>
 <tokenid>'.$this->getTokenId().'</tokenid>'.
-$this->getCardElementsForTx().'
+        $this->getCardElementsForTx().'
 <txnvalue>'.$this->getAmount().'</txnvalue>
 <transactiondatetime>'.$this->getTransactiondatetime().'</transactiondatetime>
 </transactionrequest>';
