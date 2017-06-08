@@ -26,6 +26,15 @@ abstract class AbstractTransactionRequest extends AbstractRemoteRequest
     }
 
     /**
+     * Override this method in subclasses (eg PurchaseTransactionRequest) to provide card/billing details.
+     * @return string
+     */
+    protected function getCardElementsForTx()
+    {
+        return '';
+    }
+
+    /**
      * @return string
      */
     public function getMsgType()
@@ -50,12 +59,13 @@ xmlns="'.$this->getMsgType().'"
 <accountid>'.$this->getAccountId().'</accountid>
 <accountpasscode>'.$this->getAccountPasscode().'</accountpasscode>
 <txntype>'.$this->getTxnType().'</txntype>
-<transactioncurrencycode>'.$this->getCurrencyNumber().'</transactioncurrencycode>
-<terminalcountrycode>'.$this->getCurrencyNumber().'</terminalcountrycode>
+<transactioncurrencycode>'.$this->getCurrencyNumeric().'</transactioncurrencycode>
+<terminalcountrycode>'.$this->getCurrencyNumeric().'</terminalcountrycode>
 <apacsterminalcapabilities>'.$this->getApacsterminalcapabilities().'</apacsterminalcapabilities>
 <capturemethod>'.$this->getCapturemethod().'</capturemethod>
 <processingidentifier>'.$this->getProcessingidentifier().'</processingidentifier>
-<tokenid>'.$this->getTokenId().'</tokenid>
+<tokenid>'.$this->getTokenId().'</tokenid>'.
+$this->getCardElementsForTx().'
 <txnvalue>'.$this->getAmount().'</txnvalue>
 <transactiondatetime>'.$this->getTransactiondatetime().'</transactiondatetime>
 </transactionrequest>';
@@ -82,16 +92,6 @@ xmlns="'.$this->getMsgType().'"
     }
 
     abstract public function getTxnType();
-
-    public function setCurrencyNumber($value)
-    {
-        return $this->setParameter('currencyNumber', $value);
-    }
-
-    public function getCurrencyNumber()
-    {
-        return $this->getParameter('currencyNumber');
-    }
 
     public function getApacsterminalcapabilities()
     {

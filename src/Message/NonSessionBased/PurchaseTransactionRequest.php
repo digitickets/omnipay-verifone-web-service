@@ -22,6 +22,26 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
         }
     }
 
+    protected function getPostcodeDigits($postcode)
+    {
+        // Remove anything in the postcode that is not a digit, and return the result.
+        return preg_replace('/[^\d]/', '', $postcode);
+    }
+
+    protected function getCardElementsForTx()
+    {
+        $card = $this->getCard();
+
+        return
+'
+<csc>'.$card->getCvv().'</csc>
+<avspostcode>'.$this->getPostcodeDigits($card->getBillingPostcode()).'</avspostcode>
+<issuenumber>'.$card->getIssueNumber().'</issuenumber>
+<expirydate>'.$card->getExpiryDate('ym').'</expirydate>
+<startdate>'.$card->getStartDate('my').'</startdate>
+';
+    }
+
     public function getTxnType()
     {
         return '01';

@@ -31,14 +31,14 @@ xmlns="VANGUARD"
 <merchantreference>'.$this->getTransactionId().'</merchantreference>
 <accountid>'.$this->getAccountId().'</accountid>
 <txntype>'.$this->getTxntype().'</txntype>
-<transactioncurrencycode>'.$this->getCurrencyNumber().'</transactioncurrencycode>
+<transactioncurrencycode>'.$this->getCurrencyNumeric().'</transactioncurrencycode>
 <apacsterminalcapabilities>'.$this->getApacsterminalcapabilities().'</apacsterminalcapabilities>
 <capturemethod>'.$this->getCapturemethod().'</capturemethod>
 <processingidentifier>'.$this->getProcessingidentifier().'</processingidentifier>
 <avshouse>'.$this->getHouse().'</avshouse>
 <avspostcode>'.str_replace(' ', '', $this->getPostcodeDigits()).'</avspostcode>
 <txnvalue>'.$this->getAmount().'</txnvalue>
-<terminalcountrycode>'.$this->getCurrencyNumber().'</terminalcountrycode>
+<terminalcountrycode>'.$this->getCurrencyNumeric().'</terminalcountrycode>
 <accountpasscode>'.$this->getAccountPasscode().'</accountpasscode>
 <returnhash>'.$this->getReturnhash().'</returnhash>
 </vgtransactionrequest>';
@@ -78,16 +78,6 @@ xmlns="VANGUARD"
     {
         // Remove anything in the postcode that is not a digit, and return the result.
         return preg_replace('/[^\d]/', '', $this->getPostcode());
-    }
-
-    public function setCurrencyNumber($value)
-    {
-        return $this->setParameter('currencyNumber', $value);
-    }
-
-    public function getCurrencyNumber()
-    {
-        return $this->getParameter('currencyNumber');
     }
 
     public function setAccountPasscode($value)
