@@ -71,8 +71,15 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
         // We need to send a confirm or reject message, depending on the result of the response.
         // Make sure we've got both request objects available.
         if (!empty($this->confirmRequest) && !empty($this->rejectRequest)) {
-            $confirmOrReject = $purchaseResponse->isSuccessful() ? $this->confirmRequest : $this->rejectRequest;
+            if ($purchaseResponse->isSuccessful()) {
+                $confirmOrReject = $this->confirmRequest;
+            } else {
+                $confirmOrReject = $this->rejectRequest;
+                // The confirm message doesn't include a token id, but the reject message does.
+                $confirmOrReject->setTokenId($this->getTokenId());
+            }
             $confirmOrReject->setTransactionId($purchaseResponse->getTransactionId());
+            $confirmOrReject->setProcessingDb($purchaseResponse->getProcessingDb());
             try {
                 // We don't care about the response!
                 // However, if there was a problem, eg timeout, we try once more.
