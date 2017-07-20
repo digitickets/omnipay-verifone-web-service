@@ -6,6 +6,7 @@ use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 
 class PurchaseResponse extends AbstractRemoteResponse
 {
+    const REJECTED_RESULTS = ['REFERRAL', 'DECLINED', 'COMMSDOWN'];
     private $tokenId;
 
     /**
@@ -15,9 +16,9 @@ class PurchaseResponse extends AbstractRemoteResponse
      */
     public function getError()
     {
-        $msgType = $this->data->getMsgType();
+        $txnResult = $this->data->getMsgDataAttribute('txnresult');
 
-        return $msgType == 'TRM' ? null : 'Your transaction was unsuccessful. Please try again';
+        return in_array($txnResult, self::REJECTED_RESULTS) ? 'Your transaction was unsuccessful. Please try again' : null;
     }
 
     public function getTransactionId()
