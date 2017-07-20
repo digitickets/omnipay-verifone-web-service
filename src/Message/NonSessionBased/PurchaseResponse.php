@@ -18,7 +18,11 @@ class PurchaseResponse extends AbstractRemoteResponse
     {
         $txnResult = $this->data->getMsgDataAttribute('txnresult');
 
-        return in_array($txnResult, self::REJECTED_RESULTS) ? 'Your transaction was unsuccessful. Please try again' : null;
+        return in_array($txnResult, self::REJECTED_RESULTS)
+            ?
+            'Your transaction was unsuccessful. Please try again'
+            :
+            null;
     }
 
     public function getTransactionId()
