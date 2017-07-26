@@ -33,6 +33,7 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
         $card = $this->getCard();
 
         return '<csc>'.$card->getCvv().'</csc>
+<avshouse>'.$card->getBillingAddress1().'</avshouse>
 <avspostcode>'.$this->getPostcodeDigits($card->getBillingPostcode()).'</avspostcode>
 <issuenumber>'.$card->getIssueNumber().'</issuenumber>
 <expirydate>'.$card->getExpiryDate('ym').'</expirydate>
