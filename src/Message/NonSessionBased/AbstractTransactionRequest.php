@@ -91,6 +91,36 @@ xmlns="'.$this->getMsgType().'"
         return $this->getParameter('accountPasscode');
     }
 
+    public function setCVCFailOn($value)
+    {
+        return $this->setParameter('CVCFailOn', $value);
+    }
+
+    public function getCVCFailOn()
+    {
+        return $this->getParameter('CVCFailOn');
+    }
+
+    public function setPCAVSFailOn($value)
+    {
+        return $this->setParameter('PCAVSFailOn', $value);
+    }
+
+    public function getPCAVSFailOn()
+    {
+        return $this->getParameter('PCAVSFailOn');
+    }
+
+    public function setAD1AVSFailOn($value)
+    {
+        return $this->setParameter('AD1AVSFailOn', $value);
+    }
+
+    public function getAD1AVSFailOn()
+    {
+        return $this->getParameter('AD1AVSFailOn');
+    }
+
     abstract public function getTxnType();
 
     public function getApacsterminalcapabilities()
