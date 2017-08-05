@@ -29,13 +29,13 @@ class PurchaseResponse extends AbstractRemoteResponse
          * @var PurchaseTransactionRequest $request
          */
         $request = $this->getRequest();
-        if ($this->failAdditionalCheck('cvcresult', $request->getCVCFailOn())) {
+        if ($request->getCVCFailOn() && $this->failAdditionalCheck('cvcresult', $request->getCVCFailOn())) {
             return $failMessage;
         }
-        if ($this->failAdditionalCheck('ad1avsresult', $request->getAD1AVSFailOn())) {
+        if ($request->getAD1AVSFailOn() && $this->failAdditionalCheck('ad1avsresult', $request->getAD1AVSFailOn())) {
             return $failMessage;
         }
-        if ($this->failAdditionalCheck('pcavsresult', $request->getPCAVSFailOn())) {
+        if ($request->getPCAVSFailOn() && $this->failAdditionalCheck('pcavsresult', $request->getPCAVSFailOn())) {
             return $failMessage;
         }
 
