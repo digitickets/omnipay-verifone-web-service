@@ -30,6 +30,7 @@ class RefundTransactionRequest extends AbstractTransactionRequest
         // Make sure we've got both request objects available.
         if (!empty($this->confirmRequest) && !empty($this->rejectRequest)) {
             $confirmOrReject = $refundResponse->isSuccessful() ? $this->confirmRequest : $this->rejectRequest;
+            $confirmOrReject->setProcessingDb($refundResponse->getProcessingDb());
             if (is_callable([$confirmOrReject, 'setTokenId'])) {
                 $confirmOrReject->setTokenId($request->getTokenId());
             }
