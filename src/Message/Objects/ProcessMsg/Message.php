@@ -43,6 +43,11 @@ class Message
         return $this->MsgType;
     }
 
+    public function getMsgData()
+    {
+        return $this->MsgData;
+    }
+
     /**
      * @param string $attributeName
      * @return string

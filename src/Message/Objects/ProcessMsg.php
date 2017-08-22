@@ -29,6 +29,14 @@ class ProcessMsg
     }
 
     /**
+     * @return string
+     */
+    public function getMsgData()
+    {
+        return $this->Message->getMsgData();
+    }
+
+    /**
      * @param string $attributeName
      * @return string
      */
