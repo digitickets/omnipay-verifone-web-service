@@ -6,7 +6,7 @@ use Omnipay\Common\AbstractGateway;
 
 abstract class AbstractVerifoneGateway extends AbstractGateway
 {
-    protected $liveCardFormPostUrl = 'TBA';
+    protected $liveCardFormPostUrl = 'https://vg-a.cxmlpg.com/vanguard.aspx';
     protected $testCardFormPostUrl = 'https://vg-cst.cxmlpg.com/vanguard.aspx';
 
 

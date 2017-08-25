@@ -13,7 +13,7 @@ use Omnipay\Common\Message\RequestInterface;
  */
 abstract class AbstractRemoteRequest extends AbstractRequest
 {
-    protected $liveEndpoint = 'TBA';
+    protected $liveEndpoint = 'https://payment.cxmlpg.com/XML4/commideagateway.asmx';
     protected $testEndpoint = 'https://txn-cst.cxmlpg.com/XML4/commideagateway.asmx';
 
     protected function getEndpoint(bool $withWsdl = false)
