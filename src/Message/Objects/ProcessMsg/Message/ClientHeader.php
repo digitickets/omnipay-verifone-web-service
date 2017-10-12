@@ -28,10 +28,6 @@ class ClientHeader
      * @var bool
      */
     private $CDATAWrapping;
-    /**
-     * @var string
-     */
-    private $Source;
 
     /**
      * ClientHeader constructor.
@@ -41,7 +37,6 @@ class ClientHeader
      * @param string $ProcessingDB
      * @param int $SendAttempt
      * @param bool $CDATAWrapping
-     * @param string $Source
      */
     public function __construct(
         $SystemID,
@@ -49,8 +44,7 @@ class ClientHeader
         $Passcode,
         $ProcessingDB,
         $SendAttempt,
-        $CDATAWrapping,
-        $Source
+        $CDATAWrapping
     ) {
         $this->SystemID = $SystemID;
         $this->SystemGUID = $SystemGUID;
@@ -58,7 +52,6 @@ class ClientHeader
         $this->ProcessingDB = $ProcessingDB;
         $this->SendAttempt = $SendAttempt;
         $this->CDATAWrapping = $CDATAWrapping;
-        $this->Source = $Source;
     }
 
     /**

@@ -98,17 +98,17 @@ abstract class AbstractRemoteResponse extends AbstractResponse
     {
         if (isset($clientHeader->SystemID) &&
             isset($clientHeader->SystemGUID) &&
+            isset($clientHeader->Passcode) &&
             isset($clientHeader->ProcessingDB) &&
             isset($clientHeader->SendAttempt) &&
             isset($clientHeader->CDATAWrapping)) {
             return new ClientHeader(
                 $clientHeader->SystemID,
                 $clientHeader->SystemGUID,
-                isset($clientHeader->Passcode) ? $clientHeader->Passcode : '',
+                $clientHeader->Passcode,
                 $clientHeader->ProcessingDB,
                 $clientHeader->SendAttempt,
-                $clientHeader->CDATAWrapping,
-                isset($clientHeader->Source) ? $clientHeader->Source : ''
+                $clientHeader->CDATAWrapping
             );
         }
         throw new \RuntimeException('Invalid data returned in ClientHeader');
