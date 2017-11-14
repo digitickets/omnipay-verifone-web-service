@@ -6,7 +6,7 @@ use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 
 class PurchaseResponse extends AbstractRemoteResponse
 {
-    const REJECTED_RESULTS = ['REFERRAL', 'DECLINED', 'COMMSDOWN'];
+    const REJECTED_RESULTS = ['REFERRAL', 'DECLINED', 'COMMSDOWN', 'ERROR'];
     private $tokenId;
 
     /**
