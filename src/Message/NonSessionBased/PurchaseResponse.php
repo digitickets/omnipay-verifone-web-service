@@ -6,7 +6,7 @@ use DigiTickets\VerifoneWebService\Message\AbstractRemoteResponse;
 
 class PurchaseResponse extends AbstractRemoteResponse
 {
-    const REJECTED_RESULTS = ['REFERRAL', 'DECLINED', 'COMMSDOWN', 'ERROR'];
+    const AUTH_REASONS = ['CHARGED', 'APPROVED', 'AUTHORISED', 'AUTHONLY'];
     private $tokenId;
 
     /**
@@ -18,9 +18,9 @@ class PurchaseResponse extends AbstractRemoteResponse
     {
         $failMessage = 'Your transaction was unsuccessful. Please try again';
 
-        // See if it was rejected outright.
+        // See if it was rejected outright. There is a whitelist of results.
         $txnResult = $this->data->getMsgDataAttribute('txnresult');
-        if (in_array($txnResult, self::REJECTED_RESULTS)) {
+        if (!in_array($txnResult, self::AUTH_REASONS)) {
             return $failMessage;
         }
 
