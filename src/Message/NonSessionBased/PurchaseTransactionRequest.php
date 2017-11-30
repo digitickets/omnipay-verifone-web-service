@@ -28,13 +28,18 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
         return preg_replace('/[^\d]/', '', $postcode);
     }
 
+    protected function ifSendAVSField(string $fieldName, $fieldValue)
+    {
+        return $this->getParameter('Suppress'.$fieldName) === true ? '' : $fieldValue;
+    }
+
     protected function getCardElementsForTx()
     {
         $card = $this->getCard();
 
-        return '<csc>'.$card->getCvv().'</csc>
-<avshouse>'.$card->getBillingAddress1().'</avshouse>
-<avspostcode>'.$this->getPostcodeDigits($card->getBillingPostcode()).'</avspostcode>
+        return $tmp = '<csc>'.$this->ifSendAVSField('CVC', $card->getCvv()).'</csc>
+<avshouse>'.$this->ifSendAVSField('AD1AVS', $card->getBillingAddress1()).'</avshouse>
+<avspostcode>'.$this->ifSendAVSField('PCAVS', $this->getPostcodeDigits($card->getBillingPostcode())).'</avspostcode>
 <issuenumber>'.$card->getIssueNumber().'</issuenumber>
 <expirydate>'.$card->getExpiryDate('ym').'</expirydate>
 <startdate>'.$card->getStartDate('my').'</startdate>';

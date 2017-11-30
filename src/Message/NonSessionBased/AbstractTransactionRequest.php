@@ -91,6 +91,36 @@ xmlns="'.$this->getMsgType().'"
         return $this->getParameter('accountPasscode');
     }
 
+    public function setSuppressCVC($value)
+    {
+        return $this->setParameter('SuppressCVC', !!$value);
+    }
+
+    public function getSuppressCVC()
+    {
+        return $this->getParameter('SuppressCVC');
+    }
+
+    public function setSuppressPCAVS($value)
+    {
+        return $this->setParameter('SuppressPCAVS', !!$value);
+    }
+
+    public function getSuppressPCAVS()
+    {
+        return $this->getParameter('SuppressPCAVS');
+    }
+
+    public function setSuppressAD1AVS($value)
+    {
+        return $this->setParameter('SuppressAD1AVS', !!$value);
+    }
+
+    public function getSuppressAD1AVS()
+    {
+        return $this->getParameter('SuppressAD1AVS');
+    }
+
     public function setCVCFailOn($value)
     {
         return $this->setParameter('CVCFailOn', $value);
