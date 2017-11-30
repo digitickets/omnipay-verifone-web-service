@@ -37,7 +37,7 @@ class PurchaseTransactionRequest extends AbstractTransactionRequest
     {
         $card = $this->getCard();
 
-        return $tmp = '<csc>'.$this->ifSendAVSField('CVC', $card->getCvv()).'</csc>
+        return '<csc>'.$this->ifSendAVSField('CVC', $card->getCvv()).'</csc>
 <avshouse>'.$this->ifSendAVSField('AD1AVS', $card->getBillingAddress1()).'</avshouse>
 <avspostcode>'.$this->ifSendAVSField('PCAVS', $this->getPostcodeDigits($card->getBillingPostcode())).'</avspostcode>
 <issuenumber>'.$card->getIssueNumber().'</issuenumber>
